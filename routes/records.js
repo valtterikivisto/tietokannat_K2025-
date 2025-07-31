@@ -28,6 +28,7 @@ router.get('/:id?',
     });
 
 
+// Add record
 router.post('/',
     function(request, response) {
         record.addRecord(request.body, function(err, dbResult){
@@ -42,6 +43,17 @@ router.post('/',
 
 router.delete('/', function(request, response){
     record.deleteRecord(request.body, function(err, dbResult){
+        if (err) {
+            response.json(err);
+        } else {
+            response.json(dbResult);
+        }
+    });
+});
+
+
+router.put('/', function(request, response) {
+    record.updateRecord(request.body, function(err, dbResult){
         if (err) {
             response.json(err);
         } else {

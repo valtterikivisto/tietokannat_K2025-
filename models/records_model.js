@@ -13,6 +13,9 @@ const record = {
     },
     deleteRecord: function(record, callback) {
         return db.query("DELETE FROM Arviointi WHERE idOpiskelija = ? AND idOpintojakso = ?", [record.idOpiskelija, record.idOpintojakso], callback);
+    },
+    updateRecord: function(record, callback) {
+        return db.query("UPDATE arviointi set Arvosana = ?, Päiväys = CURDATE() WHERE idOpintojakso = ? AND idOpiskelija = ?", [record.Arvosana, record.idOpintojakso, record.idOpiskelija], callback);
     }
 };
 
