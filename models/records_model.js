@@ -2,7 +2,7 @@ const db = require('../database');
 
 const record = {
     getAll: function(callback) {
-        return db.query('CALL p1()', callback);
+        return db.query('CALL findAll()', callback);
     },
     getOne: function(id, callback) {
         return db.query("CALL findOne(?)", [id], callback);
@@ -15,7 +15,7 @@ const record = {
         return db.query("DELETE FROM Arviointi WHERE idOpiskelija = ? AND idOpintojakso = ?", [record.idOpiskelija, record.idOpintojakso], callback);
     },
     updateRecord: function(record, callback) {
-        return db.query("UPDATE arviointi set Arvosana = ?, Päiväys = CURDATE() WHERE idOpintojakso = ? AND idOpiskelija = ?", [record.Arvosana, record.idOpintojakso, record.idOpiskelija], callback);
+        return db.query("UPDATE Arviointi set Arvosana = ? WHERE idOpintojakso = ? AND idOpiskelija = ?", [record.Arvosana, record.idOpintojakso, record.idOpiskelija], callback);
     }
 };
 
